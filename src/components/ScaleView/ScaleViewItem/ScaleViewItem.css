@@ -1,0 +1,8 @@
+.scale-view-item__container {
+  position: absolute;
+}
+
+.scale-view-item__content {
+  position: relative;
+  height: 100%;
+}
