@@ -1,0 +1,38 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Echarts } from '@src/components/common';
+const { Pie } = Echarts;
+
+<Meta title="组件|Echarts" />
+
+# Pie.Polar 极坐标
+
+极坐标饼图，基于Pie.Default的主题配置
+
+```javascript
+```
+
+<Preview>
+  <Story name="Pie.Polar">
+    <Pie.Polar
+      pieSource={[
+        [
+          {name: '饼1', value: 1, total: 5},
+        ],
+        [
+          {name: '饼2', value: 20, total: 23},
+        ],
+        [
+          {name: '饼3', value: 12, total: 100},
+        ]
+      ]}
+      bgColor={'#f0f0f0'}
+    ></Pie.Polar>
+  </Story>
+</Preview>
+
+| 参数    | 说明                               | 类型   | 默认值 | 必选 |
+| ------- | ---------------------------------- | ------ | ------ | ---- |
+| bgColor | 饼图数据背景色                     | string | 无     | 否   |
+| 其他    | 参考 <code>Pie.Default</code> 组件 | object | 无     | 否   |
+
+注意：Pie.Default的饼图默认取series[0]系列中的data作为数据展示，而Pie.Polar则取series多个系列的data作为展示；

@@ -1,0 +1,92 @@
+.wrap {
+    opacity: 1;
+    transition: opacity 1.5s;
+    pointer-events: none;
+    &.hidden {
+        opacity: 0;
+    }
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  -webkit-perspective: 200px;
+  -moz-perspective: 200px;
+  -ms-perspective: 200px;
+  perspective: 200px;
+}
+.loading:before,
+.loading:after
+{
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    content: '';
+    animation: jumping .5s infinite alternate;
+
+    background:#050e1f;
+}
+.loading:before
+{
+    left: 0;
+}
+.loading:after
+{
+    right: 0;
+
+    animation-delay: .15s;
+}
+@-webkit-keyframes jumping
+{
+    0%
+    {
+        -webkit-transform: scale(1.0) translateY(0px) rotateX(0deg);
+            -ms-transform: scale(1.0) translateY(0px) rotateX(0deg);
+             -o-transform: scale(1.0) translateY(0px) rotateX(0deg);
+                transform: scale(1.0) translateY(0px) rotateX(0deg);
+
+        -webkit-box-shadow: 0 0 0 #050e1f;
+                box-shadow: 0 0 0 #050e1f;
+    }
+    100%
+    {
+        -webkit-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+            -ms-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+             -o-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+                transform: scale(1.2) translateY(-25px) rotateX(45deg);
+
+        background: #324262;
+        -webkit-box-shadow: 0 25px 40px #324262;
+                box-shadow: 0 25px 40px #324262;
+    }
+}
+
+@keyframes jumping
+{
+    0%
+    {
+        -webkit-transform: scale(1.0) translateY(0px) rotateX(0deg);
+            -ms-transform: scale(1.0) translateY(0px) rotateX(0deg);
+             -o-transform: scale(1.0) translateY(0px) rotateX(0deg);
+                transform: scale(1.0) translateY(0px) rotateX(0deg);
+
+        -webkit-box-shadow: 0 0 0 #050e1f;
+                box-shadow: 0 0 0 #050e1f;
+    }
+    100%
+    {
+        -webkit-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+            -ms-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+             -o-transform: scale(1.2) translateY(-25px) rotateX(45deg);
+                transform: scale(1.2) translateY(-25px) rotateX(45deg);
+
+        background: #324262;
+        -webkit-box-shadow: 0 25px 40px #324262;
+                box-shadow: 0 25px 40px #324262;
+    }
+}

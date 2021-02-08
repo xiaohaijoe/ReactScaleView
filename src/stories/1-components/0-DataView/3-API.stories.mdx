@@ -1,0 +1,61 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+
+<Meta title="组件|ScaleView" />
+
+# API
+
+除了 ScaleViewContext，ScaleView 还提供了其他方法获取 ScaleViewContainer 的容器参数
+
+<Preview>
+  <Story name="API" height="0px">
+    <div></div>
+  </Story>
+</Preview>
+
+## useSize
+
+<code>useSize</code> 使用 hooks 方式获取容器参数
+
+```javascript
+import React from 'react';
+import { ScaleView } from '@src/components/common';
+
+const { useSize } = ScaleView;
+const Demo = props => {
+  const size = useSize();
+  return (
+    <div style={{ fontSize: 40 }}>
+      <div>size.scaleX: {size.scaleX}</div>
+      <div>size.scaleY: {size.scaleY}</div>
+      <div>size.width: {size.width}</div>
+      <div>size.height: {size.height}</div>
+    </div>
+  );
+};
+
+export default ContextDemo;
+```
+
+## withSize
+
+<code>withSize</code> 使用 HOC 方式注入容器参数
+
+```javascript
+import React from 'react';
+import { ScaleView } from '@src/components/common';
+
+const { withSize } = ScaleView;
+const Demo = props => {
+  const { size } = props;
+  return (
+    <div style={{ fontSize: 40 }}>
+      <div>size.scaleX: {size.scaleX}</div>
+      <div>size.scaleY: {size.scaleY}</div>
+      <div>size.width: {size.width}</div>
+      <div>size.height: {size.height}</div>
+    </div>
+  );
+};
+
+export default withSize(ContextDemo);
+```

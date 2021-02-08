@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>组件-弹窗</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="介绍" transform="translate(-1152.000000, -973.000000)" fill-rule="nonzero">
+            <g id="内容" transform="translate(665.000000, 115.000000)">
+                <g id="内容概要" transform="translate(0.000000, 646.000000)">
+                    <g id="编组-6" transform="translate(0.000000, 44.000000)">
+                        <g id="编组-3备份-4" transform="translate(280.000000, 143.000000)">
+                            <g id="编组-11" transform="translate(26.000000, 25.000000)">
+                                <g id="组件-弹窗" transform="translate(181.000000, 0.000000)">
+                                    <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                                    <path d="M17.4,6 L9.6,6 C8.28,6 7.2,7.08 7.2,8.4 L7.2,16.8 C7.2,18.12 8.28,19.2 9.6,19.2 L17.4,19.2 L17.4,19.8 C17.4,20.82 16.62,21.6 15.6,21.6 L6,21.6 C4.98,21.6 4.2,20.82 4.2,19.8 L4.2,6 C4.2,4.98 4.98,4.2 6,4.2 L15.6,4.2 C16.62,4.2 17.4,4.98 17.4,6 Z" id="路径" fill="#7AC6FF"></path>
+                                    <path d="M9.6,7.2 L21,7.2 C21.66,7.2 22.2,7.74 22.2,8.4 L22.2,16.8 C22.2,17.46 21.66,18 21,18 L9.6,18 C8.94,18 8.4,17.46 8.4,16.8 L8.4,8.4 C8.4,7.74 8.94,7.2 9.6,7.2 Z" id="路径" fill="#008BFF"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,19 +1,25 @@
-import Loadable from "react-loadable";
-import { Route, Switch } from "react-router-dom";
-// import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import Routes from "@/routes";
+import { Map } from "@/components";
 
-const LoadableIndex = Loadable({
-  loader: () => import("./pages/index"),
-  loading: () => null,
-});
+Map.initialize = () => {
+  return {
+    DEFAULT: (trigger) => {
+      const map = new window.AMap.Map("DEFAULT");
+      map.on("complete", () => {
+        trigger(map);
+      });
+    },
+    PRIMARY: (trigger) => {
+      const map = new window.AMap.Map("PRIMARY");
+      map.on("complete", () => {
+        trigger(map, { aa: 123 });
+      });
+    },
+  };
+};
 
-function App() {
-  return (
-    <Switch>
-      <Route path="/" component={LoadableIndex}></Route>
-    </Switch>
-  );
-}
-
+const App = (props) => {
+  return <Routes />;
+};
 export default App;

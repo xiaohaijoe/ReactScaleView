@@ -1,0 +1,61 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Echarts } from '@src/components/common';
+const { Line } = Echarts;
+
+<Meta title="组件|Echarts" />
+
+# Line.Default 默认线图/柱状图
+
+线图/柱状图是 Echarts 组件中的重要图表，业务中的 UI 多种多样，为了尽可能的支持更多样式的线图，对线图图进行了深度拓展
+
+<Preview>
+  <Story name="Line.Default">
+    <div>
+      <Line.Default
+        xAxis={{data: ['2001','2002','2003','2004','2005','2006','2007',]}}
+        yAxis={[{name: '年份'}]}
+        lineSource={[[1, 4, 5, 6, 2, 4, 6]]}
+        barSource={[[2, 3, 4, 5, 6, 7, 2]]}
+      >
+      </Line.Default>
+    </div>
+  </Story>
+</Preview>
+
+```javascript
+import { Echarts } from '@/components/common';
+const { Line } = Echarts;
+
+const Test = () => {
+  return (
+    <div>
+      <Line.Default
+        xAxis={{data: ['2001','2002','2003','2004','2005','2006','2007',]}}
+        yAxis={[{name: '年份'}]}
+        lineSource={[[1, 4, 5, 6, 2, 4, 6]]}
+        barSource={[[2, 3, 4, 5, 6, 7, 2]]}
+      ></Line.Default>
+    </div>
+  );
+};
+
+export default Test;
+```
+
+### 参数
+
+| 参数      | 说明                                                                                      | 类型         | 默认值 | 必选 |
+| --------- | ----------------------------------------------------------------------------------------- | ------------ | ------ | ---- |
+| lineSource | 参考 series 中的 data 属性                                                                | array[array] | 无     | 是   |
+| barSource | 参考 series 中的 data 属性                                                                | array[array] | 无     | 是   |
+| xAxis     | 参考 echarts 官方文档                                                                     | string       | 无     | 否   |
+| yAxis     | 参考 echarts 官方文档                                                                     | string       | 无     | 否   |
+| grid      | 参考 echarts 官方文档                                                                     | string       | 无     | 否   |
+| title     | 参考 echarts 官方文档                                                                     | object       | 无     | 否   |
+| series    | 参考 echarts 官方文档                                                                     | object       | 无     | 否   |
+| color     | 参考 echarts 官方文档                                                                     | object       | 无     | 否   |
+| tooltip   | 参考 echarts 官方文档                                                                     | object       | 无     | 否   |
+| legend    | 参考 echarts 官方文档                                                                     | object       | 无     | 否   |
+| option    | 参考 echarts 官方文档，该属性会覆盖以上所有属性                                           | object       | 无     | 否   |
+
+注意：默认主题自带默认样式，如果需要修改，则传入对应属性，代码中会对参数进行“合并”处理；

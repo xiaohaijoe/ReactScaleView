@@ -1,0 +1,67 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+// import { Checkbox } from './Checkbox';
+import { ScaleView } from '@src/components/common';
+const config = {
+  width: 1920,
+  height: 1080,
+  scaleType: 'FULL_SCREEN',
+};
+const style = {
+  width: 600,
+  height: 400,
+};
+const contentStyle = {
+  background: 'rgba(0,0,0,0.2)',
+};
+
+<Meta title="组件|ScaleView" />
+
+# ScaleViewContainer
+
+使用 ScaleViewContainer 作为大屏的容器组件，可以根据当前浏览器的像素宽高，将容器内的组件统一按照某个计算比值进行缩放。用户只需要按照设计稿还原 UI，使用该组件，可以在任何分辨率的浏览器中按比例尽可能还原。
+
+```javascript
+// 设置容器属性
+const config = {
+  width: 1920, // 画布宽度
+  height: 1080, // 画布高度
+  scaleType: 'FULL_SCREEN',
+};
+// 容器样式
+const style = {
+  width: 600,
+  height: 400,
+};
+// 内容样式
+const contentStyle = {
+  background: 'rgba(0,0,0,0.9)',
+};
+```
+
+<Preview>
+  <Story name="ScaleViewContainer" height="400px">
+    <ScaleView.ScaleViewContainer
+      config={config}
+      style={style}
+      contentStyle={contentStyle}
+    ></ScaleView.ScaleViewContainer>
+  </Story>
+</Preview>
+
+# API
+
+| 参数         | 说明                                     | 类型   | 默认值 | 必选 |
+| ------------ | ---------------------------------------- | ------ | ------ | ---- |
+| config       | 设置容器画布（内容区域）的尺寸及缩放模式 | object | 无     | 是   |
+| style        | 容器的样式                               | object | 无     | 否   |
+| className    | 容器的 class                             | class  | 无     | 否   |
+| contentStyle | 容器画布（内容区域）的样式               | object | 无     | 否   |
+| contentClass | 容器画布（内容区域）的 class             | class  | 无     | 否   |
+
+## config
+
+| 参数      | 说明                                                                                                                                                 | 类型   | 默认值 |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------ |
+| width     | 容器宽度                                                                                                                                             | Number |        |
+| height    | 容器高度                                                                                                                                             | Number |        |
+| scaleType | 容器缩放模式：<code>FULL_SCREEN</code>适应全屏，<code>ADAPT_HEIGHT</code>宽度铺满，高度按比例缩放， <code>ADAPT_WIDTH</code>高度铺满，宽度按比例缩放 | String |        |

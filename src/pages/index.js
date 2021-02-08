@@ -1,17 +1,29 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 import Loadable from "react-loadable";
 
-const LoadableDemo = new Loadable({
-  loader: () => import("./Demo"),
+// import { GlobalRoute } from '@/components/module/basic';
+
+// const LoadableDemo = Loadable({
+//   loader: () => import('@/pages/Demo'),
+//   loading: () => null,
+// });
+
+const LoadableDemo = Loadable({
+  loader: () => import("@/pages/Demo"),
   loading: () => null,
 });
-const Index = () => {
+
+// const LoadableLogin = Loadable({
+//   loader: () => import('@/pages/Login'),
+//   loading: () => null,
+// });
+
+export default function Index() {
   return (
     <Switch>
-      <Route path="/" exact render={() => <Redirect to="/demo" />}></Route>
-      <Route path="/demo" component={LoadableDemo}></Route>
+      <Route path="/" exact render={() => <Redirect to="/demo" />} />
+      <Route path="/demo" component={LoadableDemo} />
     </Switch>
   );
-};
-export default Index;
+}

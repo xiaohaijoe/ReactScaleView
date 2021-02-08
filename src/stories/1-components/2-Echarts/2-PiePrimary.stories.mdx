@@ -1,0 +1,32 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Echarts } from '@src/components/common';
+const { Pie } = Echarts;
+
+<Meta title="组件|Echarts" />
+
+# Pie.Primary 自定义主题样式一
+
+在Pie.Default的基础上增加了center属性，使得数据可以在饼图中央展示
+
+```javascript
+```
+
+<Preview>
+  <Story name="Pie.Primary">
+    <Pie.Primary
+      pieSource={[
+        [
+          {name: '饼1', value: 1, total: 5},
+          {name: '饼2', value: 20, total: 23},
+          {name: '饼3', value: 12, total: 100},
+        ],
+      ]}
+      center={<div>居中展示</div>}
+    ></Pie.Primary>
+  </Story>
+</Preview>
+
+| 参数   | 说明                               | 类型                 | 默认值 | 必选 |
+| ------ | ---------------------------------- | -------------------- | ------ | ---- |
+| center | 饼图数据背景色                     | function():ReactNode | 无     | 否   |
+| 其他   | 参考 <code>Pie.Default</code> 组件 | object               | 无     | 否   |

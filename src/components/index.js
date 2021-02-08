@@ -1,6 +1,6 @@
 import ScaleView from "./ScaleView";
-export default {
-  ScaleView,
-};
+import DataView from "./DataView";
+import Map from "./Map";
 
-export { ScaleView };
+export { ScaleView, Map, DataView };
+export default { ScaleView, Map, DataView };

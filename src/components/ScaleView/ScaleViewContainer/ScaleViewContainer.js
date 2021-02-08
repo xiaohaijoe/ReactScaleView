@@ -146,7 +146,6 @@ const ScaleViewContainer = (props) => {
     config,
     el: containerEl,
   });
-  console.log(containerConfig, contentConfig);
   return (
     <ScaleViewContext.Provider value={{ size }}>
       <div

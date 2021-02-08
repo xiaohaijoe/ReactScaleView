@@ -1,0 +1,38 @@
+.brief {
+  margin-top: 50px;
+  .item {
+    .title {
+      font-family: PingFangSC-Medium;
+      font-size: 20px;
+      color: #232526;
+      letter-spacing: 0;
+      line-height: 20px;
+    }
+    .children {
+      margin: 20px 0;
+      .child {
+        position: relative;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 30px;
+        padding-left: 14px;
+        .childTitle {
+          color: #40454a;
+        }
+        .childText {
+          color: #99a5af;
+        }
+        &::before {
+          content: '';
+          width: 8px;
+          height: 8px;
+          background: #40454a;
+          position: absolute;
+          border-radius: 50%;
+          left: 0;
+          top: 12px;
+        }
+      }
+    }
+  }
+}

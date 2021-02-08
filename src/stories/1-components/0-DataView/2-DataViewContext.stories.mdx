@@ -1,0 +1,59 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { ScaleView } from '@src/components/common';
+import ContextDemo from './ContextDemo';
+const config = {
+  width: 1920,
+  height: 1080,
+  scaleType: 'FULL_SCREEN',
+};
+const style = {
+  width: 600,
+  height: 400,
+};
+const contentStyle = {
+  background: 'rgba(0,0,0,0.2)',
+};
+
+<Meta title="组件|ScaleView" />
+
+# ScaleViewContext
+
+当组件不在 ScaleViewContainer 的子组件中，而在孙子组件中，由于使用 ScaleViewItem 层级嵌套太多容易出现样式错乱问题，这时可以使用 ScaleViewContext 来获取 ScaleViewContainer 的容器参数，来对组件做适配。
+**注意：ScaleViewContext 与 ScaleViewContainer 必须在同一上下文**
+
+<Preview>
+  <Story name="ScaleViewContext" height="400px">
+    <ScaleView.ScaleViewContainer
+      config={config}
+      style={style}
+      contentStyle={contentStyle}
+    >
+      <ContextDemo></ContextDemo>
+    </ScaleView.ScaleViewContainer>
+  </Story>
+</Preview>
+
+```javascript
+import React from 'react';
+import { ScaleView } from '@src/components/common';
+
+const { ScaleViewContext } = ScaleView;
+const ContextDemo = props => {
+  return (
+    <ScaleViewContext.Consumer>
+      {({ size }) => {
+        return (
+          <div style={{ fontSize: 40 }}>
+            <div>size.scaleX: {size.scaleX}</div>
+            <div>size.scaleY: {size.scaleY}</div>
+            <div>size.width: {size.width}</div>
+            <div>size.height: {size.height}</div>
+          </div>
+        );
+      }}
+    </ScaleViewContext.Consumer>
+  );
+};
+
+export default ContextDemo;
+```
