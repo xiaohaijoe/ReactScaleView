@@ -43,7 +43,6 @@ const useScaleViewItem = (props) => {
       scales,
       transition,
     });
-    // console.log(relateStyle, modeStyle);
     // 设置组件样式
     setContainerStyle(modeStyle);
     // 播放进场动画
