@@ -1,7 +1,7 @@
 {
-  "name": "react-starter-kit",
-  "version": "1.1.2",
-  "private": true,
+  "name": "react-scale-view",
+  "version": "1.0.0",
+  "private": false,
   "description": "react",
   "homepage": ".",
   "scripts": {
