@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScaleView } from '@src/components/common';
+import { ScaleView } from '@src/components';
 
 const { ScaleViewContext } = ScaleView;
 const ContextDemo = props => {

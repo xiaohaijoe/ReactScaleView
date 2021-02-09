@@ -1,21 +1,21 @@
-import React, { useState, useRef, useMemo } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 
 import {
   getCurrentStyleByRelations,
   getStyleByMode,
   getAttributesByMode,
-} from "../util";
-import { useNestification, useTransition } from "../hooks";
-import ScaleViewContext from "../ScaleViewContext";
-import Transition from "../ScaleViewTransition";
-import "./ScaleViewItem.css";
+} from '../util';
+import { useNestification, useTransition } from '../hooks';
+import ScaleViewContext from '../ScaleViewContext';
+import Transition from '../ScaleViewTransition';
+import './ScaleViewItem.css';
 
-const useScaleViewItem = (props) => {
+const useScaleViewItem = props => {
   const { size, el, mode, transition, style } = props;
   const [containerStyle, setContainerStyle] = useState({});
   const transitionRef = useTransition({
-    anim: "opacity",
+    anim: 'opacity',
     delay: 0,
     timeout: 0,
     show: false,
@@ -56,7 +56,7 @@ const useScaleViewItem = (props) => {
   };
 };
 
-const Content = (props) => {
+const Content = props => {
   const {
     children,
     contentClass,
@@ -68,7 +68,7 @@ const Content = (props) => {
 
   return (
     <Transition in={transitionProps.show} timeout={transitionProps.timeout}>
-      {(status) => {
+      {status => {
         return (
           <div
             style={{
@@ -76,7 +76,9 @@ const Content = (props) => {
               ...transitionContentStyle[status],
               ...contentStyle,
             }}
-            className={['scale-view-item__content', contentClass].filter(Boolean).join(' ')}
+            className={['scale-view-item__content', contentClass]
+              .filter(Boolean)
+              .join(' ')}
           >
             {children}
           </div>
@@ -86,11 +88,11 @@ const Content = (props) => {
   );
 };
 
-const Container = (props) => {
+const Container = props => {
   const { config = {}, className, contentClass, size, children } = props;
   const style = { ...props.style, ...config.style };
   const contentStyle = { ...props.contentStyle, ...config.contentStyle };
-  const mode = props.mode || config.mode || "";
+  const mode = props.mode || config.mode || '';
   const id = props.id || config.id;
   const relations = props.relations || config.relations || {};
   const getContainer = props.getContainer || config.getContainer;
@@ -120,7 +122,9 @@ const Container = (props) => {
         data-symbol="data-view-item"
         style={{ ...containerStyle }}
         ref={containerEl}
-        className={['scale-view-item__container', className].filter(Boolean).join(' ')}
+        className={['scale-view-item__container', className]
+          .filter(Boolean)
+          .join(' ')}
       >
         <Content
           contentClass={contentClass}
@@ -141,7 +145,7 @@ const Container = (props) => {
   }
 };
 
-const ScaleViewItem = (props) => {
+const ScaleViewItem = props => {
   return (
     <ScaleViewContext.Consumer>
       {({ size }) => <Container {...props} size={size}></Container>}

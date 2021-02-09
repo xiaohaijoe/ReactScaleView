@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
-export const UNMOUNTED = "unmounted";
-export const EXITED = "exited";
-export const ENTERING = "entering";
-export const ENTERED = "entered";
-export const EXITING = "exiting";
+export const UNMOUNTED = 'unmounted';
+export const EXITED = 'exited';
+export const ENTERING = 'entering';
+export const ENTERED = 'entered';
+export const EXITING = 'exiting';
 
-const ScaleViewTransition = (props) => {
+const ScaleViewTransition = props => {
   const appearStatus = useRef(null);
   const nextCallback = useRef(null);
   const [status, setStatus] = useState(() => {
@@ -32,6 +32,7 @@ const ScaleViewTransition = (props) => {
     return () => {
       cancelNextCallback();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const ScaleViewTransition = (props) => {
       }
     }
     updateStatus(false, nextStatus);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   const getTimeouts = () => {
@@ -54,7 +56,7 @@ const ScaleViewTransition = (props) => {
 
     exit = enter = appear = timeout;
 
-    if (timeout != null && typeof timeout !== "number") {
+    if (timeout != null && typeof timeout !== 'number') {
       exit = timeout.exit;
       enter = timeout.enter;
       // TODO: remove fallback for next major
@@ -77,7 +79,7 @@ const ScaleViewTransition = (props) => {
     }
   };
 
-  const performEnter = (mounting) => {
+  const performEnter = mounting => {
     const { enter } = props;
     const appearing = mounting;
     const [maybeNode, maybeAppearing] = props.nodeRef
@@ -151,10 +153,10 @@ const ScaleViewTransition = (props) => {
     // this.setState(nextState, callback);
   };
 
-  const setNextCallback = (callback) => {
+  const setNextCallback = callback => {
     let active = true;
 
-    nextCallback.current = (event) => {
+    nextCallback.current = event => {
       if (active) {
         active = false;
         nextCallback.current = null;
@@ -201,7 +203,7 @@ const ScaleViewTransition = (props) => {
   }
   return (
     <>
-      {typeof children === "function"
+      {typeof children === 'function'
         ? children(status, restProps)
         : React.cloneElement(React.Children.only(children), restProps)}
     </>
@@ -214,7 +216,7 @@ ScaleViewTransition.ENTERING = ENTERING;
 ScaleViewTransition.ENTERED = ENTERED;
 ScaleViewTransition.EXITING = EXITING;
 
-const DefaultComponent = (props) => {
+const DefaultComponent = props => {
   const mProps = {
     in: props.in !== undefined ? props.in : false,
     mountOnEnter: props.mountOnEnter !== undefined ? props.mountOnEnter : false,

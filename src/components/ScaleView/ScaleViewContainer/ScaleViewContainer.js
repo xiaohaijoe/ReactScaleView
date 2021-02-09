@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import ScaleViewContext from "../ScaleViewContext";
-import { debounce } from "../util.js";
-import "./ScaleViewContainer.css";
+import React, { useState, useEffect, useRef } from 'react';
+import ScaleViewContext from '../ScaleViewContext';
+import { debounce } from '../util.js';
+import './ScaleViewContainer.css';
 
 const useContainerConfig = () => {
   const defaultConfig = {
-    overflowX: "hidden",
-    overflowY: "hidden",
+    overflowX: 'hidden',
+    overflowY: 'hidden',
   };
   const containerConfig = useRef(defaultConfig);
-  const setContainerConfig = (props) => {
+  const setContainerConfig = props => {
     containerConfig.current = {
       ...defaultConfig,
       ...props,
@@ -18,15 +18,15 @@ const useContainerConfig = () => {
   return { containerConfig: containerConfig.current, setContainerConfig };
 };
 
-const useContentConfig = (props) => {
+const useContentConfig = props => {
   const { config } = props;
   const defaultConfig = {
     width: config.width,
     height: config.height,
-    transform: "scale(1,1)",
+    transform: 'scale(1,1)',
   };
   const contentConfig = useRef(defaultConfig);
-  const setContentConfig = (props) => {
+  const setContentConfig = props => {
     contentConfig.current = {
       ...defaultConfig,
       ...props,
@@ -35,7 +35,7 @@ const useContentConfig = (props) => {
   return { contentConfig: contentConfig.current, setContentConfig };
 };
 
-const useResize = (props) => {
+const useResize = props => {
   const { config, el, container, content } = props;
   const [size, setSize] = useState({
     width: parseInt(config.width),
@@ -53,7 +53,7 @@ const useResize = (props) => {
   }, []);
   useEffect(() => {
     const getElement = async () => {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         const recurise = () => {
           clearTimeout(refTimer.current);
           if (el.current) {
@@ -72,20 +72,20 @@ const useResize = (props) => {
       let winWidth = elem.clientWidth;
       let winHeight = elem.clientHeight;
       let { width, height, scaleX, scaleY } = size;
-      let overflowX = "hidden";
-      let overflowY = "hidden";
+      let overflowX = 'hidden';
+      let overflowY = 'hidden';
       switch (config.scaleType) {
-        case "ADAPT_WIDTH": // 宽度铺满，高度按比例缩放
+        case 'ADAPT_WIDTH': // 宽度铺满，高度按比例缩放
           scaleX = winWidth / width;
           scaleY = winWidth / width;
-          overflowX = "auto";
-          overflowY = "hidden";
+          overflowX = 'auto';
+          overflowY = 'hidden';
           break;
-        case "ADAPT_HEIGHT": // 高度铺满，宽度按比例缩放
+        case 'ADAPT_HEIGHT': // 高度铺满，宽度按比例缩放
           scaleX = winHeight / height;
           scaleY = winHeight / height;
-          overflowX = "auto";
-          overflowY = "hidden";
+          overflowX = 'auto';
+          overflowY = 'hidden';
           break;
         default:
           // case "FULL_SCREEN": // 适应全屏
@@ -104,13 +104,13 @@ const useResize = (props) => {
     // 仅在第一次的时候监听
     if (times.current === 1) {
       // 节流
-      window.addEventListener("resize", deb);
+      window.addEventListener('resize', deb);
     }
     times.current++;
     resize();
     return () => {
       if (times.current === 0) {
-        window.removeEventListener("resize", deb);
+        window.removeEventListener('resize', deb);
       }
       clearTimeout(refTimer.current);
     };
@@ -119,7 +119,7 @@ const useResize = (props) => {
   return size;
 };
 
-const useScaleViewContainer = (props) => {
+const useScaleViewContainer = props => {
   const { config, el } = props;
   const container = useContainerConfig();
   const content = useContentConfig({ config });
@@ -131,7 +131,7 @@ const useScaleViewContainer = (props) => {
   };
 };
 
-const ScaleViewContainer = (props) => {
+const ScaleViewContainer = props => {
   const {
     config,
     children,
@@ -150,12 +150,16 @@ const ScaleViewContainer = (props) => {
     <ScaleViewContext.Provider value={{ size }}>
       <div
         ref={containerEl}
-        className={['scale-view-container', className].filter(Boolean).join(' ')}
+        className={['scale-view-container', className]
+          .filter(Boolean)
+          .join(' ')}
         style={{ ...containerConfig, ...style }}
       >
         <div
           id={contentId}
-          className={['scale-view-container__content', contentClass].filter(Boolean).join(' ')}
+          className={['scale-view-container__content', contentClass]
+            .filter(Boolean)
+            .join(' ')}
           style={{ ...contentConfig, ...contentStyle }}
         >
           {children}

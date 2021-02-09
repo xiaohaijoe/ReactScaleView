@@ -1,6 +1,6 @@
-import React from "react";
-import { Switch, Redirect, Route } from "react-router-dom";
-import Loadable from "react-loadable";
+import React from 'react';
+import { Switch, Redirect, Route } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 // import { GlobalRoute } from '@/components/module/basic';
 
@@ -10,7 +10,7 @@ import Loadable from "react-loadable";
 // });
 
 const LoadableDemo = Loadable({
-  loader: () => import("@/pages/Demo"),
+  loader: () => import('@/pages/Demo'),
   loading: () => null,
 });
 

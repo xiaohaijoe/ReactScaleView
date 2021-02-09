@@ -1,23 +1,23 @@
-import React from "react";
-import { Switch, Redirect, Route } from "react-router-dom";
-import Loadable from "react-loadable";
-import { ScaleView } from "@/components";
-import { Config } from "./config";
-import styles from "./Demo.module.less";
+import React from 'react';
+import { Switch, Redirect, Route } from 'react-router-dom';
+import Loadable from 'react-loadable';
+import { ScaleView } from '@/components';
+import { Config } from './config';
+import styles from './Demo.module.less';
 const { ScaleViewContainer } = ScaleView;
 
 const LoadableDataV1 = Loadable({
-  loader: () => import("@/pages/Demo/DataV1"),
+  loader: () => import('@/pages/Demo/DataV1'),
   loading: () => null,
 });
 
 const LoadableDataV2 = Loadable({
-  loader: () => import("@/pages/Demo/DataV2"),
+  loader: () => import('@/pages/Demo/DataV2'),
   loading: () => null,
 });
 
 const LoadableDataV3 = Loadable({
-  loader: () => import("@/pages/Demo/DataV3"),
+  loader: () => import('@/pages/Demo/DataV3'),
   loading: () => null,
 });
 

@@ -4,22 +4,22 @@ import React, {
   useReducer,
   useRef,
   useContext,
-} from "react";
-import ScaleViewContext from "./ScaleViewContext";
-import { getSlideStyle, getOpacityStyle } from "./util";
+} from 'react';
+import ScaleViewContext from './ScaleViewContext';
+import { getSlideStyle, getOpacityStyle } from './util';
 
 // ScaleView不允许嵌套使用
-const useNestification = (itemRef) => {
+const useNestification = itemRef => {
   useEffect(() => {
     const node = itemRef.current;
     // 递归往父节点去找
-    const findNode = function (node) {
+    const findNode = function(node) {
       if (node === document.body) {
         return;
       }
       const { symbol } = node.dataset;
-      if (symbol === "data-view-item") {
-        console.error("ScaleViewItem不允许嵌套ScaleViewItem");
+      if (symbol === 'data-view-item') {
+        console.error('ScaleViewItem不允许嵌套ScaleViewItem');
         return;
       }
       findNode(node.parentNode);
@@ -28,20 +28,20 @@ const useNestification = (itemRef) => {
   }, [itemRef]);
 };
 
-const useTransition = (props) => {
+const useTransition = props => {
   const [transitionProps, dispatch] = useReducer(reducer, props);
   const [transitionStyle] = useState(() => {
     return getTransitionStyles(props);
   });
   const timer = useRef(null);
   function getTransitionStyles(props) {
-    const { anim = "opacity", from, delay = 0, timeout = 0 } = props;
+    const { anim = 'opacity', from, delay = 0, timeout = 0 } = props;
     let styles = {};
     switch (anim) {
-      case "slide":
+      case 'slide':
         styles = getSlideStyle(from, delay, timeout);
         break;
-      case "opacity":
+      case 'opacity':
         styles = getOpacityStyle(delay, timeout);
         break;
       default:
@@ -85,8 +85,8 @@ const useSize = () => {
   return size;
 };
 
-const withSize = (Component) => {
-  return (props) => {
+const withSize = Component => {
+  return props => {
     const size = useSize();
     return <Component {...props} size={size}></Component>;
   };

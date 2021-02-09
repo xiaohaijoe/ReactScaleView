@@ -19,7 +19,7 @@ const DataV2 = props => {
   return (
     <>
       <ScaleViewItem config={Config.mapChart}>
-        <Map mapId='PRIMARY'></Map>
+        <Map mapId="PRIMARY"></Map>
       </ScaleViewItem>
       <ScaleViewItem config={Config.leftChart} contentClass={styles.leftChart}>
         <button onClick={onGoDataV1}>切换路由1</button>
@@ -28,7 +28,10 @@ const DataV2 = props => {
       <ScaleViewItem config={Config.topChart} contentClass={styles.topChart}>
         Top Chart
       </ScaleViewItem>
-      <ScaleViewItem config={Config.rightChart} contentClass={styles.rightChart}>
+      <ScaleViewItem
+        config={Config.rightChart}
+        contentClass={styles.rightChart}
+      >
         Left Chart
       </ScaleViewItem>
     </>

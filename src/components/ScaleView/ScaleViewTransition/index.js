@@ -1,1 +1,1 @@
-export { default } from "./ScaleViewTransition";
+export { default } from './ScaleViewTransition';

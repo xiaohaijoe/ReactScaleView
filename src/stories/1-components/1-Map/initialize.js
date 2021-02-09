@@ -1,4 +1,4 @@
-import { Map } from '@src/components/common';
+import { Map } from '@src/components';
 import { loadScript } from '@src/stories/utils/util';
 (() => {
   const init = callback => {

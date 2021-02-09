@@ -17,10 +17,16 @@ const DataV3 = props => {
         <button onClick={onGoDataV1}>切换路由1</button>
         <button onClick={onGoDataV2}>切换路由2</button>
       </ScaleViewItem>
-      <ScaleViewItem config={Config.bottomChart} contentClass={styles.bottomChart}>
+      <ScaleViewItem
+        config={Config.bottomChart}
+        contentClass={styles.bottomChart}
+      >
         Top Chart
       </ScaleViewItem>
-      <ScaleViewItem config={Config.rightChart} contentClass={styles.rightChart}>
+      <ScaleViewItem
+        config={Config.rightChart}
+        contentClass={styles.rightChart}
+      >
         Left Chart
       </ScaleViewItem>
     </>

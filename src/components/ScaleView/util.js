@@ -1,11 +1,11 @@
-const customizePixel = (value) => {
+const customizePixel = value => {
   if (!value) {
     return 0;
   }
-  if(typeof value === 'number') {
+  if (typeof value === 'number') {
     return value + 'px';
   }
-  if (value.endsWith("%") || value.endsWith("px")) {
+  if (value.endsWith('%') || value.endsWith('px')) {
     return value;
   }
   return value;
@@ -15,7 +15,7 @@ const customizePixel = (value) => {
  * 跟随容器缩放，自动改变item的width、height、scale。
  * 内容不会变形，但会被裁剪；使item大小不依赖scale，而是通过改变宽高来适配；建议仅在地图上使用；
  */
-export const getScalesWithFixed = (props) => {
+export const getScalesWithFixed = props => {
   const { size, style } = props;
   const { scaleX, scaleY } = size;
   return {
@@ -32,7 +32,7 @@ export const getScalesWithFixed = (props) => {
  * 跟随容器缩放，不改变 item 的 width、height，不改变 scaleY，自动改变 scaleX。
  * 内容不会变形。保持 scaleY，通过调整 scaleX 来保持内容不变形。
  */
-export const getScalesWithScaleXFix = (props) => {
+export const getScalesWithScaleXFix = props => {
   const { size } = props;
   const { scaleX, scaleY } = size;
   return [scaleY / scaleX, 1];
@@ -43,7 +43,7 @@ export const getScalesWithScaleXFix = (props) => {
  * 跟随容器缩放，不改变 item 的 width、height，不改变 scaleX，自动改变 scaleY。
  * 内容不会变形。保持 scaleX，通过调整 scaleY 来保持内容不变形。
  */
-export const getScalesWithScaleYFix = (props) => {
+export const getScalesWithScaleYFix = props => {
   const { size } = props;
   const { scaleX, scaleY } = size;
   return [1, scaleX / scaleY];
@@ -55,7 +55,7 @@ export const getScalesWithScaleYFix = (props) => {
  * 当container.scaleX / container.scaleY > 1 时，自动改变width,scaleX；
  * 当container.scaleX / container.scaleY < 1 时，自动改变scaleY，内容不会变形；
  */
-export const getScalesWithAdaptWidth = (props) => {
+export const getScalesWithAdaptWidth = props => {
   const { size, style } = props;
   const { scaleX, scaleY } = size;
   const ratio = scaleX / scaleY;
@@ -79,7 +79,7 @@ export const getScalesWithAdaptWidth = (props) => {
  * 当container.scaleX / container.scaleY > 1 时，自动改变scaleX；
  * 当container.scaleX / container.scaleY < 1 时，自动改变height, scaleY，内容不会变形；
  */
-export const getScalesWithAdaptHeight = (props) => {
+export const getScalesWithAdaptHeight = props => {
   const { size, style } = props;
   const { scaleX, scaleY } = size;
   const ratio = scaleX / scaleY;
@@ -108,64 +108,64 @@ export function getTransformOrigin(style, transition) {
   }
   if (transition && transition.from) {
     switch (transition.from) {
-      case "top":
-        return { transformOrigin: "0 0" };
-      case "bottom":
-        return { transformOrigin: "0 100%" };
-      case "left":
-        return { transformOrigin: "0 50%" };
-      case "right":
+      case 'top':
+        return { transformOrigin: '0 0' };
+      case 'bottom':
+        return { transformOrigin: '0 100%' };
+      case 'left':
+        return { transformOrigin: '0 50%' };
+      case 'right':
         return {
-          transformOrigin: "100% 50%",
+          transformOrigin: '100% 50%',
         };
       default:
-        return { transformOrigin: "50% 50%" };
+        return { transformOrigin: '50% 50%' };
     }
   }
-  return { transformOrigin: "0% 0%" };
+  return { transformOrigin: '0% 0%' };
 }
 
 // 滚动进入初始化
 export function getSlideStyle(from, delay, timeout) {
   let transitionStyle = {};
-  let defaultTransform = "";
+  let defaultTransform = '';
   switch (from) {
-    case "left":
-      defaultTransform = { transform: "translateX(-100%)", opacity: 0 };
+    case 'left':
+      defaultTransform = { transform: 'translateX(-100%)', opacity: 0 };
       transitionStyle = {
-        entering: { transform: "translateX(0)", opacity: 1 },
-        entered: { transform: "translateX(0)", opacity: 1 },
-        exiting: { transform: "translateX(-100%)", opacity: 0 },
-        exited: { transform: "translateX(-100%)", opacity: 0 },
+        entering: { transform: 'translateX(0)', opacity: 1 },
+        entered: { transform: 'translateX(0)', opacity: 1 },
+        exiting: { transform: 'translateX(-100%)', opacity: 0 },
+        exited: { transform: 'translateX(-100%)', opacity: 0 },
       };
       break;
-    case "right":
-      defaultTransform = { transform: "translateX(100%)", opacity: 0 };
+    case 'right':
+      defaultTransform = { transform: 'translateX(100%)', opacity: 0 };
       transitionStyle = {
-        entering: { transform: "translateX(0)", opacity: 1 },
-        entered: { transform: "translateX(0)", opacity: 1 },
-        exiting: { transform: "translateX(100%)", opacity: 0 },
-        exited: { transform: "translateX(100%)", opacity: 0 },
+        entering: { transform: 'translateX(0)', opacity: 1 },
+        entered: { transform: 'translateX(0)', opacity: 1 },
+        exiting: { transform: 'translateX(100%)', opacity: 0 },
+        exited: { transform: 'translateX(100%)', opacity: 0 },
       };
       break;
-    case "top":
+    case 'top':
       // defaultTransform = 'translateY(-100%)';
-      defaultTransform = { transform: "translateY(-100%)", opacity: 0 };
+      defaultTransform = { transform: 'translateY(-100%)', opacity: 0 };
       transitionStyle = {
-        entering: { transform: "translateY(0)", opacity: 1 },
-        entered: { transform: "translateY(0)", opacity: 1 },
-        exiting: { transform: "translateY(-100%)", opacity: 0 },
-        exited: { transform: "translateY(-100%)", opacity: 0 },
+        entering: { transform: 'translateY(0)', opacity: 1 },
+        entered: { transform: 'translateY(0)', opacity: 1 },
+        exiting: { transform: 'translateY(-100%)', opacity: 0 },
+        exited: { transform: 'translateY(-100%)', opacity: 0 },
       };
       break;
-    case "bottom":
+    case 'bottom':
       // defaultTransform = 'translateY(100%)';
-      defaultTransform = { transform: "translateY(100%)", opacity: 0 };
+      defaultTransform = { transform: 'translateY(100%)', opacity: 0 };
       transitionStyle = {
-        entering: { transform: "translateY(0)", opacity: 1 },
-        entered: { transform: "translateY(0)", opacity: 1 },
-        exiting: { transform: "translateY(100%)", opacity: 0 },
-        exited: { transform: "translateY(100%)", opacity: 0 },
+        entering: { transform: 'translateY(0)', opacity: 1 },
+        entered: { transform: 'translateY(0)', opacity: 1 },
+        exiting: { transform: 'translateY(100%)', opacity: 0 },
+        exited: { transform: 'translateY(100%)', opacity: 0 },
       };
       break;
     default:
@@ -200,13 +200,13 @@ export function getOpacityStyle(delay, timeout) {
 }
 
 // 获取dom元素样式
-const getStyleByElement = (el) => {
+const getStyleByElement = el => {
   if (!el) {
     return {};
   }
   // 获取id元素的变换属性
   const scale = getTransformScaleArray(el.style.transform);
-  const transformOrigin = el.style.transformOrigin.split(" ");
+  const transformOrigin = el.style.transformOrigin.split(' ');
   return {
     left: el.offsetLeft,
     top: el.offsetTop,
@@ -222,8 +222,8 @@ const getStyleByElement = (el) => {
 
 // 根据id获取dom元素样式
 const getStyleById = async (id, mId) => {
-  const findElement = async (id) => {
-    return new Promise((resolve) => {
+  const findElement = async id => {
+    return new Promise(resolve => {
       let el = null;
       const recycle = (id, times = 0) => {
         setTimeout(() => {
@@ -244,21 +244,21 @@ const getStyleById = async (id, mId) => {
   };
   if (id === mId) {
     // 不能相对于本身进行布局, 会造成死循环
-    console.error("relationId不能是组件本身");
+    console.error('relationId不能是组件本身');
     return {};
   }
   const el = await findElement(id);
   if (!el) {
-    console.error("找不到相对组件或关系不正确");
+    console.error('找不到相对组件或关系不正确');
     return {};
   }
   return getStyleByElement(el);
 };
 
 // 获取目标组件transformOriginY的值
-const getTargetOriginYRatio = (rect) => {
+const getTargetOriginYRatio = rect => {
   const { transformOrigin, height } = rect;
-  if (transformOrigin[1].endsWith("%")) {
+  if (transformOrigin[1].endsWith('%')) {
     const origin = parseFloat(transformOrigin[1]) / 100;
     return origin;
   } else {
@@ -268,9 +268,9 @@ const getTargetOriginYRatio = (rect) => {
 };
 
 // 获取目标组件transformOriginX的值
-const getTargetOriginXRatio = (rect) => {
+const getTargetOriginXRatio = rect => {
   const { transformOrigin, width } = rect;
-  if (transformOrigin[0].endsWith("%")) {
+  if (transformOrigin[0].endsWith('%')) {
     const origin = parseFloat(transformOrigin[0]) / 100;
     return origin;
   } else {
@@ -280,7 +280,7 @@ const getTargetOriginXRatio = (rect) => {
 };
 
 // 根据相对关系，确认当前组件的尺寸
-export const getCurrentStyleByRelations = async (props) => {
+export const getCurrentStyleByRelations = async props => {
   const {
     relations = {},
     id: mId,
@@ -296,7 +296,7 @@ export const getCurrentStyleByRelations = async (props) => {
 
   // 根据相对关系确定当前组件的样式
   const calculateStyleByRelations = async () => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const afterStyle = {}; // 重新计算后的布局样式
       const list = Object.entries(relations);
       if (list.length === 0) {
@@ -314,32 +314,32 @@ export const getCurrentStyleByRelations = async (props) => {
         let offsetY = 0; // 偏移量
         let offsetX = 0;
         switch (rel[0]) {
-          case "layoutBelow":
+          case 'layoutBelow':
             // 位于rel[1]元素正下方
             offsetY = rect.height * (1 - rect.scaleY) * (1 - offsetYRadio);
             mTop = rect.top + rect.height - offsetY;
             break;
-          case "layoutAbove":
+          case 'layoutAbove':
             // 位于rel[1]元素的正上方
             offsetY = rect.height * (1 - rect.scaleY) * offsetYRadio;
             mBottom = rect.parent.offsetHeight - rect.top - offsetY;
             break;
-          case "toLeftOf":
+          case 'toLeftOf':
             // 位于rel[1]元素左边
             offsetX = rect.width * (1 - rect.scaleX) * offsetXRadio;
             mRight = rect.parent.offsetWidth - rect.left - offsetX;
             break;
-          case "toRightOf":
+          case 'toRightOf':
             // 位于rel[1]元素右边
             offsetX = rect.width * (1 - rect.scaleX) * (1 - offsetXRadio);
             mLeft = rect.left + rect.width - offsetX;
             break;
-          case "alignLeft":
+          case 'alignLeft':
             // 左边界与rel[1]元素的左边界对齐
             offsetX = rect.width * (1 - rect.scaleX) * offsetXRadio;
             mLeft = rect.left + offsetX;
             break;
-          case "alignRight":
+          case 'alignRight':
             // 右边界rel[1]元素的右边界对齐
             offsetX = rect.width * (1 - rect.scaleX) * offsetXRadio;
             mRight =
@@ -348,12 +348,12 @@ export const getCurrentStyleByRelations = async (props) => {
               rect.width * rect.scaleX -
               offsetX;
             break;
-          case "alignTop":
+          case 'alignTop':
             // 上边界与rel[1]上边界对齐
             offsetY = rect.height * (1 - rect.scaleY) * offsetYRadio;
             mTop = rect.top + offsetY;
             break;
-          case "alignBottom":
+          case 'alignBottom':
             // 下边界与rel[1]下边界对齐
             offsetY = rect.height * (1 - rect.scaleY) * offsetYRadio;
             mBottom =
@@ -372,7 +372,7 @@ export const getCurrentStyleByRelations = async (props) => {
             const transformOrigin =
               mElem.current.style.transformOrigin ||
               mTransformOrigin.transformOrigin;
-            return transformOrigin.split(" ");
+            return transformOrigin.split(' ');
           };
 
           const resetTransformOffset = () => {
@@ -389,12 +389,12 @@ export const getCurrentStyleByRelations = async (props) => {
             const boxWidth = parseInt(width) || screenWidth - mLeft - mRight;
             const boxHeight = parseInt(height) || screenHeight - mTop - mBottom;
             // 把锚点转成百分比
-            if (transformOrigin[0].endsWith("%")) {
+            if (transformOrigin[0].endsWith('%')) {
               originX = parseFloat(transformOrigin[0]) / 100;
             } else {
               originX = parseFloat(transformOrigin[0]) / boxWidth;
             }
-            if (transformOrigin[1].endsWith("%")) {
+            if (transformOrigin[1].endsWith('%')) {
               originY = parseFloat(transformOrigin[1]) / 100;
             } else {
               originY = parseFloat(transformOrigin[1]) / boxHeight;
@@ -433,7 +433,7 @@ export const getCurrentStyleByRelations = async (props) => {
   return calculateStyleByRelations();
 };
 
-export const getStyleByMode = (props) => {
+export const getStyleByMode = props => {
   const { relateStyle, el, transition, scales, afterStyle } = props;
   let modeStyle = { ...afterStyle, ...relateStyle };
   const elem = el.current || {};
@@ -442,35 +442,35 @@ export const getStyleByMode = (props) => {
   const { transform } = modeStyle;
   return {
     ...modeStyle,
-    transform: `scale(${scales[0]}, ${scales[1]}) ${transform || ""}`,
+    transform: `scale(${scales[0]}, ${scales[1]}) ${transform || ''}`,
     ...getTransformOrigin({ ...elem.style, ...afterStyle }, transition),
   };
 };
 
-export const getAttributesByMode = (props) => {
+export const getAttributesByMode = props => {
   const { mode, size, transition, style } = props;
   // const style = el.current ? el.current.style : {};
   let scales = [];
   let afterStyle = style;
   let res = {};
   switch (mode) {
-    case "fixed":
+    case 'fixed':
       res = getScalesWithFixed({ size, style });
       scales = res.scale;
       afterStyle = { ...afterStyle, ...res.style };
       break;
-    case "scaleXFix":
+    case 'scaleXFix':
       scales = getScalesWithScaleXFix({ size });
       break;
-    case "scaleYFix":
+    case 'scaleYFix':
       scales = getScalesWithScaleYFix({ size });
       break;
-    case "adaptWidth":
+    case 'adaptWidth':
       res = getScalesWithAdaptWidth({ size, style });
       scales = res.scale;
       afterStyle = { ...afterStyle, ...res.style };
       break;
-    case "adaptHeight":
+    case 'adaptHeight':
       res = getScalesWithAdaptHeight({ size, style });
       scales = res.scale;
       afterStyle = { ...afterStyle, ...res.style };
@@ -487,7 +487,7 @@ export const getAttributesByMode = (props) => {
 // 防抖函数
 export function debounce(fn, delay) {
   let handle = null;
-  return function (...e) {
+  return function(...e) {
     // 取消之前的延时调用
     clearTimeout(handle);
     handle = setTimeout(() => {
@@ -500,7 +500,7 @@ export function getTransformScaleArray(transform) {
   const patt = /scale\((.*)\)/;
   const res = patt.exec(transform);
   if (res) {
-    return res[1].split(",").map(parseFloat);
+    return res[1].split(',').map(parseFloat);
   } else {
     return [1, 1];
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ScaleView, Map} from '@/components';
+import { ScaleView, Map } from '@/components';
 import { Config } from './config';
 import styles from './DataV1.module.less';
 const { ScaleViewItem } = ScaleView;
@@ -29,7 +29,10 @@ const DataV1 = props => {
       <ScaleViewItem config={Config.topChart} contentClass={styles.topChart}>
         Top Chart
       </ScaleViewItem>
-      <ScaleViewItem config={Config.rightChart} contentClass={styles.rightChart}>
+      <ScaleViewItem
+        config={Config.rightChart}
+        contentClass={styles.rightChart}
+      >
         Right Chart
       </ScaleViewItem>
     </>

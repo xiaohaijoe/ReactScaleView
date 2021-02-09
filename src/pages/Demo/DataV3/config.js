@@ -13,7 +13,7 @@ export const Config = {
     mode: 'scaleXFix',
     relations: {
       layoutAbove: 'bottomChart',
-    }
+    },
   },
   bottomChart: {
     id: 'bottomChart',
@@ -46,6 +46,6 @@ export const Config = {
     relations: {
       alignRight: 'bottomChart',
       layoutAbove: 'bottomChart',
-    }
+    },
   },
 };
