@@ -8,7 +8,8 @@ import {
 } from "../util";
 import { useNestification, useTransition } from "../hooks";
 import ScaleViewContext from "../ScaleViewContext";
-import Transition from "../Transition";
+import Transition from "../ScaleViewTransition";
+// import Transition from "../Transition";
 import "./ScaleViewItem.css";
 
 const useScaleViewItem = (props) => {
@@ -70,6 +71,7 @@ const Content = (props) => {
   return (
     <Transition in={transitionProps.show} timeout={transitionProps.timeout}>
       {(status) => {
+        console.log(status);
         return (
           <div
             style={{

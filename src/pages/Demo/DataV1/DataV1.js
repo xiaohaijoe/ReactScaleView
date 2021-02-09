@@ -19,19 +19,19 @@ const DataV1 = props => {
   }
   return (
     <>
-      <ScaleViewItem config={Config.mapChart}>
+      {/* <ScaleViewItem config={Config.mapChart}>
         <Map></Map>
-      </ScaleViewItem>
-      <ScaleViewItem config={Config.leftChart} contentClass={styles.leftChart}>
+      </ScaleViewItem> */}
+      {/* <ScaleViewItem config={Config.leftChart} contentClass={styles.leftChart}>
         <button onClick={onGoDataV2}>切换页面2</button>
         <button onClick={onGoDataV3}>切换页面2</button>
-      </ScaleViewItem>
+      </ScaleViewItem> */}
       <ScaleViewItem config={Config.topChart} contentClass={styles.topChart}>
         Top Chart
       </ScaleViewItem>
-      <ScaleViewItem config={Config.rightChart} contentClass={styles.rightChart}>
+      {/* <ScaleViewItem config={Config.rightChart} contentClass={styles.rightChart}>
         Right Chart
-      </ScaleViewItem>
+      </ScaleViewItem> */}
     </>
   );
 };
