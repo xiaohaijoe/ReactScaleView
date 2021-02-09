@@ -8,7 +8,7 @@ import {
 } from "../util";
 import { useNestification, useTransition } from "../hooks";
 import ScaleViewContext from "../ScaleViewContext";
-import Transition from "../Transition";
+import Transition from "../ScaleViewTransition";
 import "./ScaleViewItem.css";
 
 const useScaleViewItem = (props) => {
