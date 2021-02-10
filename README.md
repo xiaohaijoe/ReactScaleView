@@ -7,11 +7,11 @@ ScaleView 组件库基于 React 封装，主要用于构建大屏（全屏）数
 
 ###
 
-<img src="./public/resource/demo1.gif" alt="show" /><br>
+![name](./public/resource/demo1.gif)<br>
 
 ### 响应式布局
 
-<img src="./public/resource/demo2.gif" alt="show" /><br>
+![name](./public/resource/demo2.gif)<br>
 以 UI 设计图为基准，适配好一个尺寸，理论上可以支持任意相似屏幕比例的屏幕<br>
 
 ## Install
