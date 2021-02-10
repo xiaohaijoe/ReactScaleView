@@ -13,13 +13,13 @@ ScaleView 组件库基于 React 封装，主要用于构建大屏（全屏）数
 ### 响应式布局
 
 ![name](./public/resource/demo2.gif)<br>
-在 1920px*1080px 的画布上，即使缩小到 1440*768，或者放大到 3840\*2160，所有内容将自动缩放成相应比例值，也无需重新适配<br>
+在 1920px\*1080px 的画布上，即使缩小到 1440\*768，或者放大到 3840\*2160，所有内容将自动缩放成相应比例值，也无需重新适配<br>
 
 ## Install
 
-npm: <code>npm i react-scale-view</code><br>
+npm: <code>npm i scale-view</code><br>
 或<br>
-yarn: <code>yarn add react-scale-view</code><br>
+yarn: <code>yarn add scale-view</code><br>
 
 ## Demo
 
@@ -49,7 +49,7 @@ export default {
 };
 
 // 2. 实例化容器组件, 如./DemoDataV.js
-import { ScaleViewContainer } from 'react-scale-view';
+import { ScaleViewContainer } from 'scale-view';
 import Config from './config';
 
 const DemoDataV = props => {
@@ -146,7 +146,7 @@ export default {
 
 // 2. 实例化组件，在页面中引入ScaleViewItem
 import React, { useEffect } from 'react';
-import { ScaleViewItem } from 'react-scale-view';
+import { ScaleViewItem } from 'scale-view';
 import { Map } from '@/components';
 import Config from './config';
 import styles from './DataV1.module.less';
@@ -272,7 +272,7 @@ const relations = {
 
 ```javascript
 import React from 'react';
-import { ScaleViewContext } from 'react-scale-view';
+import { ScaleViewContext } from 'scale-view';
 
 const ContextDemo = props => {
   return (
@@ -300,7 +300,7 @@ export default ContextDemo;
 
 ```javascript
 import React from 'react';
-import { useSize } from 'react-scale-view';
+import { useSize } from 'scale-view';
 
 const Demo = props => {
   const size = useSize();
@@ -323,7 +323,7 @@ export default ContextDemo;
 
 ```javascript
 import React from 'react';
-import { withSize } from 'react-scale-view';
+import { withSize } from 'scale-view';
 
 const Demo = props => {
   const { size } = props;
