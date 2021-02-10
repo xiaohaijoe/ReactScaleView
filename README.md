@@ -340,6 +340,75 @@ const Demo = props => {
 export default withSize(ContextDemo);
 ```
 
+#### 完整例子
+
+```javascript
+import React, { Component } from 'react';
+import { ScaleViewContainer, ScaleViewItem } from 'scale-view';
+import './App.css';
+class App extends Component {
+  render() {
+    return (
+      <ScaleViewContainer
+        config={{
+          width: 1920, // (必选)容器宽度；如 1920，
+          height: 1080, // (必选)容器高度；如 1080，
+          scaleType: 'FULL_SCREEN',
+        }}
+      >
+        <ScaleViewItem
+          config={{
+            id: 'headerChart',
+            style: { left: 0, top: 0, width: '100%', height: 200 },
+            transition: {
+              anim: 'slide',
+              from: 'top',
+              timeout: 300,
+              delay: 100,
+            },
+            contentStyle: { background: 'rgba(0,0,0,0.5)' },
+          }}
+        ></ScaleViewItem>
+        <ScaleViewItem
+          config={{
+            style: { left: 0, top: 0, bottom: 0, width: 450 },
+            transition: {
+              anim: 'slide',
+              from: 'left',
+              timeout: 300,
+              delay: 100,
+            },
+            contentStyle: { background: 'rgba(0,0,0,0.5)' },
+            relations: {
+              layoutBelow: 'headerChart',
+            },
+          }}
+        ></ScaleViewItem>
+        <ScaleViewItem
+          config={{
+            style: { right: 0, top: 0, bottom: 0, width: 450 },
+            transition: {
+              anim: 'slide',
+              from: 'right',
+              timeout: 300,
+              delay: 100,
+            },
+            contentStyle: { background: 'rgba(0,0,0,0.5)' },
+            relations: {
+              layoutBelow: 'headerChart',
+            },
+          }}
+        ></ScaleViewItem>
+      </ScaleViewContainer>
+    );
+  }
+}
+
+export default App;
+```
+**运行效果**
+![name](./public/resource/demo3.gif)<br>
+
 **注意：在开发中使用一些第三方的 UI 库或 API 时，往往会脱离上下文（Context），或在 ScaleViewContainer 外渲染组件**<br>
 **如：**<br>
 **1. ant-design 会选在 body 下渲染 modal，popcontainer 等**<br>

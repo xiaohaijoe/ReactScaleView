@@ -24,7 +24,7 @@ const addCustomize = () => config => {
     config.mode = 'production';
     config.entry = path.join(__dirname, './src/components/ScaleView/index.js');
     config.output = {
-      path: path.join(__dirname, './lib'),
+      path: path.join(__dirname, './publish'),
       filename: 'index.js',
       libraryTarget: 'commonjs2', //发布组件专用
     };
@@ -145,7 +145,7 @@ module.exports = {
   paths: function(paths, env) {
     // ...add your paths config
     paths.appBuild = isComponentPublish
-      ? path.resolve(__dirname, 'lib')
+      ? path.resolve(__dirname, 'publish')
       : paths.appBuild;
     return paths;
   },
