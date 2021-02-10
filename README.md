@@ -35,10 +35,14 @@ yarn: <code>yarn add scale-view</code><br>
 
 ### 1. 创建容器
 
+根据 UI 的设计图，创建相应的画布大小，画布大小一般为 1920px\*1080px<br>
+在父组件中引入 ScaleViewContainer，将对容器内的所有子组件进行缩放处理<br>
+
+**例 1**<br>
+
 ```javascript
 import { ScaleViewContainer } from 'scale-view';
 
-//
 const Component = () => {
   return (
     <ScaleViewContainer
@@ -52,8 +56,9 @@ const Component = () => {
 };
 ```
 
-根据 UI 的设计图，创建相应的画布大小，画布大小一般为 1920px\*1080px<br>
-在父组件中引入 ScaleViewContainer，将对容器内的所有子组件进行缩放处理<br>
+**例 2**<br>
+<code>ScaleViewContainer</code> 与 <code>ScaleViewItem</code> 不一定是父子关系，也可以是爷孙关系。<br>
+因此可以将 ScaleViewContainer 提取到最外层中，对全局组件进行适配<br>
 
 ```javascript
 // 1. 新建配置文件, 如./config.js
@@ -64,7 +69,9 @@ export default {
     scaleType: 'FULL_SCREEN',
   },
 };
+```
 
+```javascript
 // 2. 实例化容器组件, 如./DemoDataV.js
 import { ScaleViewContainer } from 'scale-view';
 import Config from './config';
@@ -93,6 +100,8 @@ export default DemoDataV;
 ```
 
 ### 2. 创建子组件
+
+**例 1**<br>
 
 ```javascript
 import { ScaleViewContainer, ScaleViewItem } from 'scale-view';
@@ -130,8 +139,11 @@ const Children = () => {
 };
 ```
 
+**例 2**
+
 ```javascript
-// 1. 新建配置文件, 在配置文件中配置每个需要适配的组件栏的配置
+// 1. 为了代码简介，可以吧配置信息统一放在配置文件中
+// ./config.js
 export default {
   topChart: {
     id: 'topChart',
@@ -196,7 +208,9 @@ export default {
     mode: 'fixed',
   },
 };
+```
 
+```javascript
 // 2. 实例化组件，在页面中引入ScaleViewItem
 import React, { useEffect } from 'react';
 import { ScaleViewItem } from 'scale-view';
