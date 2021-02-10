@@ -406,7 +406,7 @@ class App extends Component {
 
 export default App;
 ```
-**运行效果**
+**运行效果**<br>
 ![name](./public/resource/demo3.gif)<br>
 
 **注意：在开发中使用一些第三方的 UI 库或 API 时，往往会脱离上下文（Context），或在 ScaleViewContainer 外渲染组件**<br>
