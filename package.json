@@ -2,8 +2,8 @@
   "name": "react-scale-view",
   "version": "1.0.0",
   "private": false,
-  "description": "react",
-  "main": "lib/index",
+  "description": "react-scale-view is a component that ",
+  "main": "./index",
   "files": [
     "lib"
   ],
