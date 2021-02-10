@@ -4,6 +4,7 @@
 
 ScaleView 组件库基于 React 封装，主要用于构建大屏（全屏）数据展示页面即数据可视化<br>
 利用响应式的适配方式，不管是在 PC 端，还是投放到大屏上，不管是 1440\*768，1080p，还是 2k，4k 甚至更大分辨率的屏幕，都只需要 1 次适配，多屏幕兼容。<br>
+以 UI 设计图为基准，适配好一个尺寸，理论上可以支持任意相似屏幕比例的屏幕<br>
 
 ###
 
@@ -12,7 +13,7 @@ ScaleView 组件库基于 React 封装，主要用于构建大屏（全屏）数
 ### 响应式布局
 
 ![name](./public/resource/demo2.gif)<br>
-以 UI 设计图为基准，适配好一个尺寸，理论上可以支持任意相似屏幕比例的屏幕<br>
+在 1920px*1080px 的画布上，即使缩小到 1440*768，或者放大到 3840\*2160，所有内容将自动缩放成相应比例值，也无需重新适配<br>
 
 ## Install
 
@@ -179,7 +180,7 @@ export default DataV1;
 
 文档可参考 storybook，运行本项目命令 yarn storybook 即可看到相关文档
 
-### ScaleViewContainer
+### 1. ScaleViewContainer
 
 使用 ScaleViewContainer 作为大屏的容器组件，可以根据当前浏览器的像素宽高，将容器内的组件统一按照某个计算比值进行缩放。用户只需要按照设计稿还原 UI，使用该组件，可以在任何分辨率的浏览器中按比例尽可能还原。
 | 参数 | 说明 | 类型 | 默认值 | 必选 |
@@ -190,10 +191,157 @@ export default DataV1;
 | contentStyle | 容器画布（内容区域）的样式 | object | 无 | 否 |
 | contentClass | 容器画布（内容区域）的 class | class | 无 | 否 |
 
-## config
+#### 1.1 config
 
 | 参数      | 说明                                                                                                                                                 | 类型   | 默认值 |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------ |
 | width     | 容器宽度                                                                                                                                             | Number |        |
 | height    | 容器高度                                                                                                                                             | Number |        |
 | scaleType | 容器缩放模式：<code>FULL_SCREEN</code>适应全屏，<code>ADAPT_HEIGHT</code>宽度铺满，高度按比例缩放， <code>ADAPT_WIDTH</code>高度铺满，宽度按比例缩放 | String |        |
+
+#### 2. ScaleViewItem
+
+| 参数         | 说明                                                                                                                                                         | 类型   | 默认值   | 必选 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | -------- | ---- |
+| style        | Item 容器的样式                                                                                                                                              | object | 无       | 否   |
+| mode         | Item 容器的缩放模式：<code>standard</code>,<code>fixed</code>,<code>scaleXFix</code>,<code>scaleYFix</code>,<code>adaptWidth</code>,<code>adaptHeight</code> | string | standard | 否   |
+| transition   | 进场动画                                                                                                                                                     | object | 无       | 否   |
+| relations    | Item 间相对关系                                                                                                                                              | object | 无       | 否   |
+| className    | Item 容器的 class                                                                                                                                            | class  | 无       | 否   |
+| contentStyle | Item 内容区域的样式                                                                                                                                          | object | 无       | 否   |
+| contentClass | Item 内容区域的 class                                                                                                                                        | class  | 无       | 否   |
+| config       | Item 统一设置（主要目的是减少组件参数数量）：<code>style</code><code>mode</code><code>transition</code><code>relations</code><code>contentStyle</code>       | object | 无       | 否   |
+
+#### 2.1 mode 缩放模式
+
+| 参数               | 说明                                                                                                                                                                                             | 类型   | 默认值 | 必选 |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------ | ---- |
+| mode='standard'    | 跟随容器缩放，不改变 item 的 width、height、scale（默认）                                                                                                                                        | string | 无     | 否   |
+| mode='fixed'       | 跟随容器缩放，自动改变 item 的 width、height、scale。内容不会变形，但会被裁剪；使 item 大小不依赖 scale，而是通过改变宽高来适配；`建议仅在地图上使`用；                                          | string | 无     | 否   |
+| mode='scaleXFix'   | 跟随容器缩放，不改变 item 的 width、height，不改变 scaleY，自动改变 scaleX。内容不会变形。保持 scaleY，通过调整 scaleX 来保持内容不变形。                                                        | string | 无     | 否   |
+| mode='scaleYFix'   | 跟随容器缩放，不改变 item 的 width、height，不改变 scaleX，自动改变 scaleY。内容不会变形。保持 scaleX，通过调整 scaleY 来保持内容不变形。                                                        | string | 无     | 否   |
+| mode='adaptWidth'  | 跟隨容器縮放，宽度相对固定，高度自动缩放。 当 container.scaleX / container.scaleY > 1 时，自动改变 width,scaleX；当 container.scaleX / container.scaleY < 1 时，自动改变 scaleY，内容不会变形；  | string | 无     | 否   |
+| mode='adaptHeight' | 跟随容器缩放，高度相对固定，宽度自动缩放。当 container.scaleX / container.scaleY > 1 时，自动改变 scaleX；当 container.scaleX / container.scaleY < 1 时，自动改变 height, scaleY，内容不会变形； | string | 无     | 否   |
+
+**注意：由于大多数地图 api 都对地图上的鼠标事件进行了监听处理，对组件进行 transform 变化时会出现偏移，使用 mode='fixed'可以解决这一问题**
+
+#### 2.2 transition 进场动画
+
+| 参数    | 说明                                                                                                      | 类型   | 默认值 | 必选 |
+| ------- | --------------------------------------------------------------------------------------------------------- | ------ | ------ | ---- |
+| anim    | 进场动画方式：<code>slide</code><code>opacity</code>                                                      | string | 无     | 是   |
+| from    | 进场方向，仅当 anim='slide'时生效：<code>left</code><code>top</code><code>right</code><code>bottom</code> | string | 无     | 否   |
+| timeout | 执行时间                                                                                                  | number | 无     | 是   |
+| delay   | 延迟时间                                                                                                  | number | 无     | 否   |
+
+```javascript
+// 例如
+const transition = {
+  anim: 'slide',
+  from: 'left',
+  timeout: 150,
+  delay: 150,
+};
+```
+
+#### 2.3 relations Item 间相对关系
+
+| 参数            | 说明                         | 类型   | 默认值 | 必选 |
+| --------------- | ---------------------------- | ------ | ------ | ---- |
+| layoutBelow: id | 位于 id 元素正下方           | string | 无     | 否   |
+| layoutAbove: id | 位于 id 元素正上方           | string | 无     | 否   |
+| toLeftOf: id    | 位于 id 元素左边             | string | 无     | 否   |
+| toRightOf: id   | 位于 id 元素右边             | string | 无     | 否   |
+| alignLeft: id   | 左边界与 id 元素的左边界对齐 | string | 无     | 否   |
+| alignRight: id  | 右边界 id 元素的右边界对齐   | string | 无     | 否   |
+| alignTop: id    | 上边界与 id 上边界对齐       | string | 无     | 否   |
+| alignBottom: id | 下边界与 id 下边界对齐       | string | 无     | 否   |
+
+```javascript
+// 例如
+const relations = {
+  layoutBelow: 'chart1',
+  layoutAbove: 'chart2',
+};
+```
+
+### 3. ScaleViewContext
+
+当组件不在 ScaleViewContainer 的子组件中，而在孙子组件中，由于使用 ScaleViewItem 层级嵌套太多容易出现样式错乱问题，这时可以使用 ScaleViewContext 来获取 ScaleViewContainer 的容器参数，来对组件做适配。
+**注意：ScaleViewContext 与 ScaleViewContainer 必须在同一上下文**
+
+```javascript
+import React from 'react';
+import { ScaleViewContext } from 'react-scale-view';
+
+const ContextDemo = props => {
+  return (
+    <ScaleViewContext.Consumer>
+      {({ size }) => {
+        return (
+          <div style={{ fontSize: 40 }}>
+            <div>size.scaleX: {size.scaleX}</div>
+            <div>size.scaleY: {size.scaleY}</div>
+            <div>size.width: {size.width}</div>
+            <div>size.height: {size.height}</div>
+          </div>
+        );
+      }}
+    </ScaleViewContext.Consumer>
+  );
+};
+
+export default ContextDemo;
+```
+
+### 4. useSize
+
+<code>useSize</code> 使用 hooks 方式获取容器参数
+
+```javascript
+import React from 'react';
+import { useSize } from 'react-scale-view';
+
+const Demo = props => {
+  const size = useSize();
+  return (
+    <div style={{ fontSize: 40 }}>
+      <div>size.scaleX: {size.scaleX}</div>
+      <div>size.scaleY: {size.scaleY}</div>
+      <div>size.width: {size.width}</div>
+      <div>size.height: {size.height}</div>
+    </div>
+  );
+};
+
+export default ContextDemo;
+```
+
+### 5. withSize
+
+<code>withSize</code> 使用 HOC 方式注入容器参数
+
+```javascript
+import React from 'react';
+import { withSize } from 'react-scale-view';
+
+const Demo = props => {
+  const { size } = props;
+  return (
+    <div style={{ fontSize: 40 }}>
+      <div>size.scaleX: {size.scaleX}</div>
+      <div>size.scaleY: {size.scaleY}</div>
+      <div>size.width: {size.width}</div>
+      <div>size.height: {size.height}</div>
+    </div>
+  );
+};
+
+export default withSize(ContextDemo);
+```
+
+**注意：在开发中使用一些第三方的 UI 库或 API 时，往往会脱离上下文（Context），或在 ScaleViewContainer 外渲染组件**<br>
+**如：**<br>
+**1. ant-design 会选在 body 下渲染 modal，popcontainer 等**<br>
+**2. 如在地图上创建图标（Marker），海量图（MassMark），弹窗（InfoWindow）等**<br>
+**导致这些组件脱离了 ScaleViewContainer 适配范围。针对这些情况，可以使用<code>ScaleViewContext</code>，<code>useSize</code>，<code>withSize</code>获取 ScaleViewContainer 的缩放比例及容器大小，对第三方组件进行 transform 变化。**<br>
