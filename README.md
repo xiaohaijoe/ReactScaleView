@@ -17,9 +17,9 @@ ScaleView 组件库基于 React 封装，主要用于构建大屏（全屏）数
 
 ## Install
 
-npm: <code>npm i scale-view</code><br>
+npm: <code>npm i react-scale-view</code><br>
 或<br>
-yarn: <code>yarn add scale-view</code><br>
+yarn: <code>yarn add react-scale-view</code><br>
 
 ## Demo
 
@@ -41,7 +41,7 @@ yarn: <code>yarn add scale-view</code><br>
 **例 1**<br>
 
 ```javascript
-import { ScaleViewContainer } from 'scale-view';
+import { ScaleViewContainer } from 'react-scale-view';
 
 const Component = () => {
   return (
@@ -73,7 +73,7 @@ export default {
 
 ```javascript
 // 2. 实例化容器组件, 如./DemoDataV.js
-import { ScaleViewContainer } from 'scale-view';
+import { ScaleViewContainer } from 'react-scale-view';
 import Config from './config';
 
 const DemoDataV = props => {
@@ -104,7 +104,7 @@ export default DemoDataV;
 **例 1**<br>
 
 ```javascript
-import { ScaleViewContainer, ScaleViewItem } from 'scale-view';
+import { ScaleViewContainer, ScaleViewItem } from 'react-scale-view';
 
 const Parent = () => {
   return (
@@ -213,7 +213,7 @@ export default {
 ```javascript
 // 2. 实例化组件，在页面中引入ScaleViewItem
 import React, { useEffect } from 'react';
-import { ScaleViewItem } from 'scale-view';
+import { ScaleViewItem } from 'react-scale-view';
 import { Map } from '@/components';
 import Config from './config';
 import styles from './DataV1.module.less';
@@ -339,7 +339,7 @@ const relations = {
 
 ```javascript
 import React from 'react';
-import { ScaleViewContext } from 'scale-view';
+import { ScaleViewContext } from 'react-scale-view';
 
 const ContextDemo = props => {
   return (
@@ -367,7 +367,7 @@ export default ContextDemo;
 
 ```javascript
 import React from 'react';
-import { useSize } from 'scale-view';
+import { useSize } from 'react-scale-view';
 
 const Demo = props => {
   const size = useSize();
@@ -390,7 +390,7 @@ export default ContextDemo;
 
 ```javascript
 import React from 'react';
-import { withSize } from 'scale-view';
+import { withSize } from 'react-scale-view';
 
 const Demo = props => {
   const { size } = props;
@@ -411,7 +411,7 @@ export default withSize(ContextDemo);
 
 ```javascript
 import React, { Component } from 'react';
-import { ScaleViewContainer, ScaleViewItem } from 'scale-view';
+import { ScaleViewContainer, ScaleViewItem } from 'react-scale-view';
 import './App.css';
 class App extends Component {
   render() {
