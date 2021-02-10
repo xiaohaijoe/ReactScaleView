@@ -35,6 +35,23 @@ yarn: <code>yarn add scale-view</code><br>
 
 ### 1. 创建容器
 
+```javascript
+import { ScaleViewContainer } from 'scale-view';
+
+//
+const Component = () => {
+  return (
+    <ScaleViewContainer
+      config={{
+        width: 1920, // (必选)容器宽度；如 1920，
+        height: 1080, // (必选)容器高度；如 1080，
+        scaleType: 'FULL_SCREEN',
+      }}
+    ></ScaleViewContainer>
+  );
+};
+```
+
 根据 UI 的设计图，创建相应的画布大小，画布大小一般为 1920px\*1080px<br>
 在父组件中引入 ScaleViewContainer，将对容器内的所有子组件进行缩放处理<br>
 
@@ -76,6 +93,42 @@ export default DemoDataV;
 ```
 
 ### 2. 创建子组件
+
+```javascript
+import { ScaleViewContainer, ScaleViewItem } from 'scale-view';
+
+const Parent = () => {
+  return (
+    <ScaleViewContainer
+      config={{
+        width: 1920, // (必选)容器宽度；如 1920，
+        height: 1080, // (必选)容器高度；如 1080，
+        scaleType: 'FULL_SCREEN',
+      }}
+    >
+      <Children></Children>
+    </ScaleViewContainer>
+  );
+};
+
+const Children = () => {
+  return (
+    <ScaleViewItem
+      config={{
+        id: 'headerChart',
+        style: { left: 0, top: 0, width: '100%', height: 200 },
+        transition: {
+          anim: 'slide',
+          from: 'top',
+          timeout: 300,
+          delay: 100,
+        },
+        contentStyle: { background: 'rgba(0,0,0,0.5)' },
+      }}
+    ></ScaleViewItem>
+  );
+};
+```
 
 ```javascript
 // 1. 新建配置文件, 在配置文件中配置每个需要适配的组件栏的配置
@@ -406,6 +459,7 @@ class App extends Component {
 
 export default App;
 ```
+
 **运行效果**<br>
 ![name](./public/resource/demo3.gif)<br>
 
