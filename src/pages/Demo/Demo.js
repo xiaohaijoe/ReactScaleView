@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { ScaleView } from '@/components';
-import { Config } from './config';
+import Config from './config';
 import styles from './Demo.module.less';
 const { ScaleViewContainer } = ScaleView;
 

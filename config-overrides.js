@@ -4,12 +4,12 @@ const {
   addWebpackAlias,
   addDecoratorsLegacy,
   addWebpackPlugin,
-  // addLessLoader,
+  addLessLoader,
 } = require('customize-cra');
 const TerserPlugin = require('terser-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
-// const { theme } = require('./package.json');
+const { theme } = require('./package.json');
 const path = require('path');
 const REACT_APP = /^COMPONENT_PUBLISH/i;
 const isComponentPublish = process.argv.filter(value => REACT_APP.test(value))
@@ -131,13 +131,13 @@ module.exports = {
       '@components': path.resolve(__dirname, 'src/components'),
     }),
     addDecoratorsLegacy(),
-    // addLessLoader({
-    //   // lessOptions: {
-    //   // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-    //   javascriptEnabled: true,
-    //   modifyVars: theme,
-    //   // },
-    // }),
+    addLessLoader({
+      // lessOptions: {
+      // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+      javascriptEnabled: true,
+      modifyVars: theme,
+      // },
+    }),
     addTerserPlugin(),
     addEnvironmentVariables(),
     addCustomize()

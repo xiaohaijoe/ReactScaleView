@@ -1,0 +1,34 @@
+.center-box {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  overflow: visible;
+  margin: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  /* Keep ratio on resize*/
+}
+
+.center-box::before {
+  content: '';
+  float: left;
+  padding-top: 100%;
+}
+.center-box-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-box-content::before {
+  height: 40px;
+  content: attr(data-text);
+  color: var(--text-color, #cecece);
+  font-family: DINCond-Black;
+  font-size: 28px;
+  color: #e0eaff;
+  letter-spacing: 2.39px;
+  text-align: center;
+  text-shadow: 0 1px 15px rgba(89, 128, 255, 0.8);
+}

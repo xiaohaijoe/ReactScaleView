@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { ScaleView, Map } from '@/components';
+import { PieChart, PiePolarChart, PiePrimaryChart } from './components';
 import { Config } from './config';
 import styles from './DataV1.module.less';
 const { ScaleViewItem } = ScaleView;
@@ -24,7 +25,7 @@ const DataV1 = props => {
       </ScaleViewItem>
       <ScaleViewItem config={Config.leftChart} contentClass={styles.leftChart}>
         <button onClick={onGoDataV2}>切换页面2</button>
-        <button onClick={onGoDataV3}>切换页面2</button>
+        <button onClick={onGoDataV3}>切换页面3</button>
       </ScaleViewItem>
       <ScaleViewItem config={Config.topChart} contentClass={styles.topChart}>
         Top Chart
@@ -33,7 +34,10 @@ const DataV1 = props => {
         config={Config.rightChart}
         contentClass={styles.rightChart}
       >
-        Right Chart
+        {/* 默认饼图 */}
+        <PieChart></PieChart>
+        <PiePolarChart></PiePolarChart>
+        <PiePrimaryChart></PiePrimaryChart>
       </ScaleViewItem>
     </>
   );
