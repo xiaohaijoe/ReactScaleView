@@ -1,21 +1,57 @@
 const {
   override,
-  fixBabelImports,
+  // fixBabelImports,
   addWebpackAlias,
   addDecoratorsLegacy,
   addWebpackPlugin,
-  addLessLoader,
+  // addLessLoader,
 } = require('customize-cra');
 const TerserPlugin = require('terser-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
-const { theme } = require('./package.json');
+// const { theme } = require('./package.json');
 const path = require('path');
+const REACT_APP = /^COMPONENT_PUBLISH/i;
+const isComponentPublish = process.argv.filter(value => REACT_APP.test(value))
+  .length;
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
 // 打包配置
 const addCustomize = () => config => {
-  // config.output.path = path.resolve(__dirname, 'tx');
-  // console.log(config, 'config======]');
+  // 发布组件配置
+  if (isComponentPublish) {
+    config = {};
+    config.mode = 'production';
+    config.entry = path.join(__dirname, './src/components/ScaleView/index.js');
+    config.output = {
+      path: path.join(__dirname, './lib'),
+      filename: 'index.js',
+      libraryTarget: 'commonjs2', //发布组件专用
+    };
+    config.plugins = [];
+    config.module = {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          use: 'babel-loader',
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.cm\.styl$/,
+          loader:
+            'style-loader!css-loader?modules&camelCase&localIdentName=[local]-[hash:base64:5]!stylus-loader',
+        },
+      ],
+    };
+    config.resolve = {
+      extensions: ['.js', '.jsx'],
+    };
+    config.externals = [nodeExternals()];
+  }
   return config;
 };
 
@@ -84,10 +120,10 @@ const addTerserPlugin = () => config => {
 
 module.exports = {
   webpack: override(
-    fixBabelImports('antd', {
-      libraryDirectory: 'es',
-      style: true,
-    }),
+    // fixBabelImports('antd', {
+    //   libraryDirectory: 'es',
+    //   style: true,
+    // }),
     addWebpackAlias({
       //路径别名
       'react-native': 'react-native-web',
@@ -95,15 +131,22 @@ module.exports = {
       '@components': path.resolve(__dirname, 'src/components'),
     }),
     addDecoratorsLegacy(),
-    addLessLoader({
-      // lessOptions: {
-      // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-      javascriptEnabled: true,
-      modifyVars: theme,
-      // },
-    }),
+    // addLessLoader({
+    //   // lessOptions: {
+    //   // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+    //   javascriptEnabled: true,
+    //   modifyVars: theme,
+    //   // },
+    // }),
     addTerserPlugin(),
     addEnvironmentVariables(),
     addCustomize()
   ),
+  paths: function(paths, env) {
+    // ...add your paths config
+    paths.appBuild = isComponentPublish
+      ? path.resolve(__dirname, 'lib')
+      : paths.appBuild;
+    return paths;
+  },
 };

@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter } from 'react-router-dom';
 // import { configure } from 'mobx';
 // import { Provider } from 'mobx-react';
 
-import "@/assets/index.less";
-import "@/assets/App.less";
+import '@/assets/index.less';
+import '@/assets/App.less';
 
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
 // import commonStore from './stores/commonStore';
 // import authStore from './stores/authStore';
@@ -31,7 +31,7 @@ ReactDOM.render(
   <HashRouter>
     <App />
   </HashRouter>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

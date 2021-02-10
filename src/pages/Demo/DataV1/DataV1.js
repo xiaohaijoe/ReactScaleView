@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { ScaleView, Map } from '@/components';
 import { Config } from './config';

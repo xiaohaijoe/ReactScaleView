@@ -3,17 +3,23 @@
   "version": "1.0.0",
   "private": false,
   "description": "react",
+  "main": "lib/index",
+  "files": [
+    "lib"
+  ],
   "homepage": ".",
+  "license": "MIT",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/*.js",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "deploy": "react-app-rewired build COMPONENT_PUBLISH=true",
     "test": "react-app-rewired test",
+    "dist": "npx babel lib --out-dir cjs",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loadable": "^5.5.0",
@@ -21,8 +27,11 @@
     "react-scripts": "3.4.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.13",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
     "@storybook/addon-actions": "^5.2.8",
     "@storybook/addon-docs": "^5.3.13",
     "@storybook/addon-links": "^5.2.6",
@@ -56,7 +65,8 @@
     "react-app-rewired": "^2.1.5",
     "react-is": "^16.12.0",
     "terser-webpack-plugin": "1.2.2",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "webpack-node-externals": "^2.5.2"
   },
   "eslintConfig": {
     "extends": "react-app"
