@@ -1,6 +1,6 @@
 {
   "name": "react-scale-view",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "private": false,
   "description": "react-scale-view is a component used for large-screen-data-visualization",
   "main": "index.js",
