@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import ScaleViewContext from '../ScaleViewContext';
 import { debounce } from '../util.js';
 import './ScaleViewContainer.css';
@@ -167,6 +168,31 @@ const ScaleViewContainer = props => {
       </div>
     </ScaleViewContext.Provider>
   );
+};
+
+ScaleViewContainer.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Set the size of the container.
+   */
+  config: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    scaleType: PropTypes.string.isRequired,
+  }).isRequired,
+  className: PropTypes.any,
+  style: PropTypes.object,
+  contentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  contentClass: PropTypes.any,
+  contentStyle: PropTypes.object,
+};
+
+ScaleViewContainer.defaultProps = {
+  config: {
+    width: 1920,
+    height: 1080,
+    scaleType: 'FULL_SCREEN',
+  },
 };
 
 export default ScaleViewContainer;

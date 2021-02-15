@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import {
@@ -9,6 +10,7 @@ import {
 import { useNestification, useTransition } from '../hooks';
 import ScaleViewContext from '../ScaleViewContext';
 import Transition from '../ScaleViewTransition';
+import { transitionShape, relationsShape } from './types';
 import './ScaleViewItem.css';
 
 const useScaleViewItem = props => {
@@ -139,7 +141,10 @@ const Container = props => {
     );
   };
   if (getContainer) {
-    return ReactDOM.createPortal(renderContainer(), getContainer());
+    return ReactDOM.createPortal(
+      renderContainer(),
+      typeof getContainer === 'function' ? getContainer() : getContainer
+    );
   } else {
     return renderContainer();
   }
@@ -152,5 +157,70 @@ const ScaleViewItem = props => {
     </ScaleViewContext.Consumer>
   );
 };
+
+ScaleViewItem.propTypes = {
+  /**
+   * Set the ID of the Item Container.
+   */
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Set the scale mode of the Item.
+   * There are five scale mode: 'standard', 'fixed', 'scaleXFix', 'scaleYFix', 'adaptWidth', 'adaptHeight'.
+   */
+  mode: PropTypes.string.isRequired,
+
+  /**
+   * Set the enter animation of the Item.
+   * There are two animations: 'slide', 'opacity'.
+   * When anim is 'slide', the item will slide in, and 'from' is required.
+   * When opacity is 'opacity', the item will fade in.
+   * 'timeout' means the duration of animation executing.
+   * 'delay' means the delay time to execute the animation.
+   *
+   * @type { anim: string, from?: string, timeout: number, delay: number}
+   */
+  transition: transitionShape,
+
+  /**
+   * Set the relationship between the items.
+   */
+  relations: relationsShape,
+
+  getContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  style: PropTypes.object,
+  contentStyle: PropTypes.object,
+  className: PropTypes.any,
+  contentClass: PropTypes.any,
+  children: PropTypes.element,
+  /**
+   * For the convenience of setting the item parameters, component provide 'config' props to unify them.
+   * It's recommended to setting all the parameters in a config file.
+   * like:
+   * ./config.js
+   * export default {
+   *   header: {
+   *     mode: 'scaleXFix',
+   *     transition: {
+   *       anim: 'slide',
+   *       from: 'top',
+   *       timeout: 300,
+   *     },
+   *   },
+   *   otherChart: {...},
+   * }
+   *
+   */
+  config: {
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    mode: PropTypes.string.isRequired,
+    transition: transitionShape,
+    relations: relationsShape,
+    getContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    style: PropTypes.object,
+    contentStyle: PropTypes.object,
+  },
+};
+
+ScaleViewItem.defaultProps = {};
 
 export default ScaleViewItem;
