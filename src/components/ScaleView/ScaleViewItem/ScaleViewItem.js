@@ -167,7 +167,7 @@ ScaleViewItem.propTypes = {
    * Set the scale mode of the Item.
    * There are five scale mode: 'standard', 'fixed', 'scaleXFix', 'scaleYFix', 'adaptWidth', 'adaptHeight'.
    */
-  mode: PropTypes.string.isRequired,
+  mode: PropTypes.string,
 
   /**
    * Set the enter animation of the Item.
@@ -191,7 +191,6 @@ ScaleViewItem.propTypes = {
   contentStyle: PropTypes.object,
   className: PropTypes.any,
   contentClass: PropTypes.any,
-  children: PropTypes.element,
   /**
    * For the convenience of setting the item parameters, component provide 'config' props to unify them.
    * It's recommended to setting all the parameters in a config file.
@@ -210,15 +209,15 @@ ScaleViewItem.propTypes = {
    * }
    *
    */
-  config: {
+  config: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    mode: PropTypes.string.isRequired,
+    mode: PropTypes.string,
     transition: transitionShape,
     relations: relationsShape,
     getContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     style: PropTypes.object,
     contentStyle: PropTypes.object,
-  },
+  }),
 };
 
 ScaleViewItem.defaultProps = {};

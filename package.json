@@ -1,6 +1,6 @@
 {
   "name": "react-scale-view",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "private": false,
   "description": "react-scale-view is a component used for large-screen-data-visualization",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "lib"
   ],
   "homepage": "https://github.com/xiaohaijoe/ReactScaleView",
-  "license": "MIT",
+  "license": "MIT License",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/*.js",
     "start": "react-app-rewired start",
